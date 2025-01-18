@@ -29,13 +29,13 @@ class RegraDeNegocio:
                 resposta += dado
             print(f"O resultado e: {resposta}")
 
-#conn = ConectorBancoDeDados()
+conn = ConectorBancoDeDados()
 #conn.conectar_ao_banco()
 
-#repo = RepositorioDeBanco(conn)
-#regra = RegraDeNegocio(repo)
+repo = RepositorioDeBanco(conn)
+regra = RegraDeNegocio(repo)
 
-#regra.calcular_resultados()
+regra.calcular_resultados()
 
 
 
