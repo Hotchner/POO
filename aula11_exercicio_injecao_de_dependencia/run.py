@@ -1,6 +1,11 @@
 class ConectorBancoDeDados:
     def __init__(self) -> None:
-        self.connerction = None
+        self.connection = None
+        self.plataform = "MySQL"
+        self.server = "local_host"
+
+    def banco_status(self):
+        print(f"Estado atual da conexão: {self.connection}")
 
     def conectar_ao_banco(self) -> None:
         self.connection = True
@@ -8,6 +13,9 @@ class ConectorBancoDeDados:
 class RepositorioDeBanco:
     def __init__(self, conexao: ConectorBancoDeDados) -> None:
         self.__conexao = conexao
+
+    def get_conexao(self):
+        return self.__conexao.connection
 
     def busca_dados(self) -> list:
         if self.__conexao.connection:
@@ -29,13 +37,25 @@ class RegraDeNegocio:
                 resposta += dado
             print(f"O resultado e: {resposta}")
 
-conn = ConectorBancoDeDados()
+
+#conn = ConectorBancoDeDados()
 #conn.conectar_ao_banco()
+#print(conn.connection)
 
-repo = RepositorioDeBanco(conn)
-regra = RegraDeNegocio(repo)
+#repo1 = RepositorioDeBanco(conn)
 
-regra.calcular_resultados()
-
+#print(repo1.busca_dados())
 
 
+DBx = ConectorBancoDeDados()
+#DBx.banco_status()
+
+DBx.conectar_ao_banco()
+#DBx.banco_status()
+
+repositorio_1 = RepositorioDeBanco(DBx)
+
+print(repositorio_1.get_conexao())
+print(DBx.plataform)
+
+#print(repositorio_1.__conexao.plataform)
